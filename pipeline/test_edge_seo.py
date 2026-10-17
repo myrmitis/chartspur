@@ -127,6 +127,47 @@ class EdgeSEOTests(unittest.TestCase):
                 self.assertEqual(result["headers"]["location"], ORIGIN + path)
                 self.assertFalse(result["calls"])
 
+    def test_aliases_redirect_once_before_proxy_or_discovery_handling(self):
+        for host in ("http://chartspur.com", "http://www.chartspur.com", "https://www.chartspur.com"):
+            for path in ("/", "/brief.html", "/robots.txt", "/sitemap.xml"):
+                for method in ("GET", "HEAD"):
+                    with self.subTest(host=host, path=path, method=method):
+                        result = self.request(path, method, host=host)
+                        self.assertEqual(result["status"], 301)
+                        self.assertEqual(result["headers"]["location"], ORIGIN + path)
+                        self.assertEqual(result["body"], "")
+                        self.assertFalse(result["calls"])
+                        target = urlsplit(result["headers"]["location"])
+                        final = self.request(target.path, method, {"body": "public page"},
+                                             host=f"{target.scheme}://{target.netloc}")
+                        self.assertEqual(final["status"], 200)
+                        self.assertNotIn("location", final["headers"])
+                        discovery = path in ("/robots.txt", "/sitemap.xml")
+                        self.assertEqual(len(final["calls"]), 0 if discovery else 1)
+                        if method == "HEAD":
+                            self.assertEqual(final["body"], "")
+
+    def test_redirects_preserve_encoded_paths_and_queries(self):
+        query = "?genre=Photo%20%26%20Video&tag=a&tag=b&empty=&literal=a+b&encoded=%2B%252F"
+        for host in ("http://chartspur.com", "http://www.chartspur.com", "https://www.chartspur.com"):
+            for path in ("/", "/brief.html", "/robots.txt", "/sitemap.xml", "/nested/a%2Fb%20c"):
+                with self.subTest(host=host, path=path):
+                    result = self.request(path + query, host=host)
+                    self.assertEqual(result["status"], 301)
+                    self.assertEqual(result["headers"]["location"], ORIGIN + path + query)
+                    self.assertFalse(result["calls"])
+
+    def test_https_apex_proxy_preserves_query_and_external_payment_redirect(self):
+        path = "/brief.html?genre=Photo%20%26%20Video&tag=a&tag=b&empty="
+        # Inert upstream fixture: never contact Stripe or initiate checkout.
+        payment = "https://buy.stripe.com/test_synthetic"
+        result = self.request(path, upstream={"status": 302, "headers": {"location": payment}})
+        self.assertEqual(result["status"], 302)
+        self.assertEqual(result["headers"]["location"], payment)
+        self.assertEqual(len(result["calls"]), 1)
+        self.assertEqual(result["calls"][0]["url"], PAGES + path)
+        self.assertEqual(result["calls"][0]["options"]["redirect"], "manual")
+
     def test_existing_public_pages_and_data_still_proxy_to_pages(self):
         for path in ("/", "/brief.html", "/data/live.json", "/app.js"):
             with self.subTest(path=path):

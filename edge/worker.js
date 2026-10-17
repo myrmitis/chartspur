@@ -19,7 +19,8 @@ Sitemap: https://${HOST}/sitemap.xml
 export default {
   async fetch(request) {
     const url = new URL(request.url);
-    if (url.hostname !== HOST) {
+    if (url.protocol !== "https:" || url.hostname !== HOST) {
+      url.protocol = "https:";
       url.hostname = HOST;
       return Response.redirect(url.toString(), 301);
     }
