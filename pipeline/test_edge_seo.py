@@ -168,6 +168,26 @@ class EdgeSEOTests(unittest.TestCase):
         self.assertEqual(result["calls"][0]["url"], PAGES + path)
         self.assertEqual(result["calls"][0]["options"]["redirect"], "manual")
 
+    def test_http_ports_redirect_to_default_https_apex(self):
+        path = "/brief.html?genre=Photo%20%26%20Video"
+        for host in ("chartspur.com", "www.chartspur.com"):
+            for port in (80, 8080, 8880, 2052, 2082, 2086, 2095):
+                with self.subTest(host=host, port=port):
+                    result = self.request(path, host=f"http://{host}:{port}")
+                    self.assertEqual(result["status"], 301)
+                    self.assertEqual(result["headers"]["location"], ORIGIN + path)
+                    self.assertFalse(result["calls"])
+
+    def test_https_nondefault_ports_keep_existing_behavior(self):
+        apex = self.request("/brief.html", host=ORIGIN + ":8443", upstream={"body": "public page"})
+        self.assertEqual(apex["status"], 200)
+        self.assertNotIn("location", apex["headers"])
+        self.assertEqual(apex["calls"][0]["url"], PAGES + "/brief.html")
+        alias = self.request("/brief.html", host="https://www.chartspur.com:8443")
+        self.assertEqual(alias["status"], 301)
+        self.assertEqual(alias["headers"]["location"], ORIGIN + ":8443/brief.html")
+        self.assertFalse(alias["calls"])
+
     def test_existing_public_pages_and_data_still_proxy_to_pages(self):
         for path in ("/", "/brief.html", "/data/live.json", "/app.js"):
             with self.subTest(path=path):

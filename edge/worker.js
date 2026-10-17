@@ -20,6 +20,8 @@ export default {
   async fetch(request) {
     const url = new URL(request.url);
     if (url.protocol !== "https:" || url.hostname !== HOST) {
+      // HTTP-only ports must not carry into the HTTPS destination.
+      if (url.protocol === "http:") url.port = "";
       url.protocol = "https:";
       url.hostname = HOST;
       return Response.redirect(url.toString(), 301);
