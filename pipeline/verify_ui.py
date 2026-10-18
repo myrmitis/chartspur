@@ -28,5 +28,21 @@ with sync_playwright() as p:
     assert "demo" not in ads.lower() or "token required" in ads.lower()
     assert not errors, errors
     page.screenshot(path="data/verify.png", full_page=True)
+    # Motion: the spur is a decorative mark, hidden from assistive tech, and
+    # reduced motion leaves the hero and the rows still and fully drawn.
+    assert page.locator("h1 svg.spur[aria-hidden=true]").count() == 1
+    calm = browser.new_page(reduced_motion="reduce")
+    calm.on("console", lambda m: errors.append(m.text) if m.type == "error" else None)
+    calm.on("pageerror", lambda e: errors.append(str(e)))
+    calm.goto(f"http://127.0.0.1:{port}/", wait_until="networkidle")
+    moving = calm.evaluate("""() => document.getAnimations()
+        .filter(a => a.playState === 'running' && !(a.effect && a.effect.target
+            && a.effect.target.classList && a.effect.target.classList.contains('spin')))
+        .length""")
+    assert moving == 0, f"{moving} animation(s) run under reduced motion"
+    assert calm.locator("tr[data-id]").count() >= 100
+    assert calm.locator("tr[data-id]").first.evaluate("e => getComputedStyle(e).opacity") == "1"
+    assert not errors, errors
+    calm.close()
     browser.close()
 print(f"UI OK: {rows} rows, detail renders, no console errors")
