@@ -23,7 +23,10 @@ function sortList(list) {
   return [...list].sort((a, b) => key(b) - key(a));
 }
 
-function render() {
+function render(deal) {
+  // deal: rows were just loaded, searched, filtered or re-sorted, so they
+  // rise into rank order once. Selecting a row re-renders without it.
+  $("#rows").classList.toggle("deal", deal === true);
   const genre = $("#genre").value;
   const list = sortList(state.list.filter(a => !genre || a.primaryGenreName === genre));
   $("#rows").innerHTML = list.map(a => {
@@ -48,7 +51,7 @@ function refreshGenres() {
 async function doSearch(q) {
   q = (q ?? $("#q").value).trim();
   if (!q) {
-    state.list = state.seeds; refreshGenres(); render();
+    state.list = state.seeds; refreshGenres(); render(true);
     setStatus(statusLine(state.seeds.length, state.live || "seed demo"));
     return;
   }
@@ -65,7 +68,7 @@ async function doSearch(q) {
   const seen = new Set(), merged = [];
   for (const a of [...live, ...base]) if (!seen.has(a.trackId)) { seen.add(a.trackId); merged.push(a); }
   state.list = merged;
-  refreshGenres(); render();
+  refreshGenres(); render(true);
   if (offline) setStatus(`Live search unreachable — ${statusLine(merged.length, state.live || "seed demo")}.`);
   else if (!merged.length) setStatus(`No results for “${esc(q)}”. Try another term.`);
   else setStatus(statusLine(merged.length, `live App Store + ${state.live || "seed demo"}`));
@@ -104,7 +107,8 @@ async function show(id) {
   const p = new URLSearchParams(location.search);
   p.set("id", String(id));
   history.replaceState(null, "", "?" + p.toString());
-  $("#detail").scrollIntoView({ behavior: "smooth" });
+  const calm = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  $("#detail").scrollIntoView({ behavior: calm ? "auto" : "smooth" });
 }
 
 function renderTab() {
@@ -143,7 +147,7 @@ async function load() {
     setStatus(statusLine(state.seeds.length, state.live));
   }
   state.list = state.seeds;
-  refreshGenres(); render();
+  refreshGenres(); render(true);
   const p = new URLSearchParams(location.search);
   const q = p.get("q");
   const id = p.get("id");
@@ -153,6 +157,6 @@ async function load() {
 
 $("#go").onclick = () => doSearch();
 $("#q").addEventListener("keydown", e => { if (e.key === "Enter") doSearch(); });
-$("#genre").onchange = render;
-$("#sort").onchange = render;
+$("#genre").onchange = () => render(true);
+$("#sort").onchange = () => render(true);
 load();
