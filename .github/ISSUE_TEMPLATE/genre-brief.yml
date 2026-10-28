@@ -5,7 +5,9 @@ body:
   - type: markdown
     attributes:
       value: |
-        Card checkout is not open. This issue records interest only. Do not include payment card numbers, bank details, or a full Stripe receipt.
+        This issue records genre interest only. It is not a payment or proof of purchase.
+        When checkout is open, use the card-checkout link on the brief page for paid briefs.
+        Do not include payment card numbers, bank details, or a full Stripe receipt.
   - type: input
     id: genre
     attributes:

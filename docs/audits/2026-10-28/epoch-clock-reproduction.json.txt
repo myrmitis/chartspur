@@ -1,0 +1,55 @@
+{
+  "shared_summary_sha256": "7898fa7b1c611ca4a5a6eb19bd03a490b0e5d4b30a30abd749852a818b7599cb",
+  "shared_test_cli_sha256": "b89d4dd59f403dbf7738d336ac7b88f8f703925eaf63aaca6beed925ba155dcc",
+  "public_now_flag_accepts_unrestricted_int": true,
+  "parser_has_no_minimum_or_positive_constraint": true,
+  "epoch_zero_rejected_by_parser": false,
+  "results": [
+    {
+      "requested_now": 1,
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "pipeline/summary.py",
+        "--brief",
+        "brief.json",
+        "--ledger",
+        "ledger.json",
+        "--decide",
+        "--event",
+        "workflow_dispatch",
+        "--now",
+        "1"
+      ],
+      "cwd": "/Users/andyzhou/dev/.audit-evidence/2026-10-28/chartspur/epoch-clock-control/source",
+      "exit_code": 0,
+      "seconds": 0.033,
+      "marker": "<!-- appsignal-summary:1970-01-01 -->",
+      "heading": "## Chartspur operating summary 1970-01-01",
+      "log_sha256": "ca900218047d90d9b02706c0f299d025367cc4bd015d340d17029edf8af6a9a4"
+    },
+    {
+      "requested_now": 0,
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "pipeline/summary.py",
+        "--brief",
+        "brief.json",
+        "--ledger",
+        "ledger.json",
+        "--decide",
+        "--event",
+        "workflow_dispatch",
+        "--now",
+        "0"
+      ],
+      "cwd": "/Users/andyzhou/dev/.audit-evidence/2026-10-28/chartspur/epoch-clock-control/source",
+      "exit_code": 0,
+      "seconds": 0.032,
+      "marker": "<!-- appsignal-summary:2026-10-28 -->",
+      "heading": "## Chartspur operating summary 2026-10-28",
+      "log_sha256": "a10f39a194a5edae3e806a92883d0202c4c41943fb35059bc57761aea9186627"
+    }
+  ],
+  "no_shared_edits": true,
+  "no_outbound_actions": true
+}

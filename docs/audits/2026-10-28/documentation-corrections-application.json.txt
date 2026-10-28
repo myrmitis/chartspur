@@ -1,0 +1,32 @@
+{
+  "provider": "OpenAI Codex subagent",
+  "reviewer": "/root/agents_audit",
+  "base": "49453b586d9a854c942ea02a4b77c9b85e7ab382",
+  "proposal_patch_sha256": "a313657992d806cd349a1c228848609840c5f6d79ac70531b722101d8f8bd729",
+  "owned_paths": [
+    "AGENTS.md",
+    ".github/ISSUE_TEMPLATE/genre-brief.yml"
+  ],
+  "owned_diff_exactly_matches_reviewed_proposal": true,
+  "local_web_E2E_requirement_retained": true,
+  "existing_assertion_policy_retained": true,
+  "form_identity_fields_required_inputs_and_all_other_structure_byte_identical": true,
+  "privacy_sentence_retained_verbatim": true,
+  "interest_not_payment_boundary_retained": true,
+  "request_url_identity_unchanged": "https://github.com/myrmitis/chartspur/issues/new?template=genre-brief.yml&title=",
+  "hashes": {
+    "AGENTS.md": {
+      "before": "7b28db1c1e4f1359149eb1721fc85f46164201960c7ea8478a88fd138d2af663",
+      "after": "9ecfbf49a4fdd532e60c585aba8664d0927c641ba4973ee807bd5d15ad23d766"
+    },
+    ".github/ISSUE_TEMPLATE/genre-brief.yml": {
+      "before": "7b008c8c5c980ab30640333b8b2a3fc191995b66e043b29e3a23824bf523c190",
+      "after": "463d932e491ee50f96dcf2052388c53a777c4cd324f537aefbae8517039cfe79"
+    }
+  },
+  "edits_ended": true,
+  "shared_test_runner_started": false,
+  "commit_created": false,
+  "system_Ruby_Psych_safe_YAML_parse_passed": true,
+  "parsed_form_structure_identical_except_first_markdown_copy": true
+}

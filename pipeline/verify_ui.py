@@ -1,5 +1,6 @@
 """UI self-check: pipeline rows render, detail opens, no console errors."""
 import sys
+from urllib.parse import urlsplit
 from playwright.sync_api import sync_playwright
 
 port = sys.argv[1] if len(sys.argv) > 1 else "8903"
@@ -44,5 +45,43 @@ with sync_playwright() as p:
     assert calm.locator("tr[data-id]").first.evaluate("e => getComputedStyle(e).opacity") == "1"
     assert not errors, errors
     calm.close()
+    # Search and lookup must retain Apple's public genre field.
+    fixture = page.request.get(f"http://127.0.0.1:{port}/seed.json").json()[0]
+    fixture.update(trackId=900000001, trackName="Chartspur metadata audit", sellerName="Audit fixture")
+    assert fixture["primaryGenreName"]
+    assert "primaryGenre" not in fixture
+    metadata_context = browser.new_context(reduced_motion="reduce")
+    metadata_requests = []
+    def metadata_request(route):
+        url = urlsplit(route.request.url)
+        if url.netloc == f"127.0.0.1:{port}":
+            return route.continue_()
+        if url.netloc == "itunes.apple.com" and url.path in ("/search", "/lookup"):
+            metadata_requests.append(url.path)
+            print(f"Metadata fixture: {route.request.url}", flush=True)
+            return route.fulfill(json={"resultCount": 1, "results": [fixture]},
+                                 headers={"Access-Control-Allow-Origin": "*"})
+        return route.abort()
+    metadata_context.route("**/*", metadata_request)
+    metadata = metadata_context.new_page()
+    metadata.on("pageerror", lambda e: errors.append(str(e)))
+    metadata.goto(f"http://127.0.0.1:{port}/", wait_until="networkidle")
+    metadata.locator("#q").fill("Chartspur metadata audit")
+    metadata.locator("#go").click()
+    result = metadata.locator('tr[data-id="900000001"]')
+    result.wait_for()
+    assert result.get_by_role("cell", name=fixture["primaryGenreName"], exact=True).count() == 1, "search genre missing"
+    metadata.locator("#genre").select_option(label=fixture["primaryGenreName"])
+    assert result.count() == 1, "genre filter must retain the matching search result"
+    metadata.close()
+    metadata = metadata_context.new_page()
+    metadata.on("pageerror", lambda e: errors.append(str(e)))
+    metadata.goto(f"http://127.0.0.1:{port}/?id=900000001", wait_until="networkidle")
+    metadata.locator("#detail h2").wait_for()
+    genre_line = f"{fixture['sellerName']} · {fixture['primaryGenreName']} ·"
+    assert metadata.locator("#detail").get_by_text(genre_line, exact=False).count() == 1, "lookup genre missing"
+    assert set(metadata_requests) == {"/search", "/lookup"}, metadata_requests
+    assert not errors, errors
+    metadata_context.close()
     browser.close()
 print(f"UI OK: {rows} rows, detail renders, no console errors")

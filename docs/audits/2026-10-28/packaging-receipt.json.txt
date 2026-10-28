@@ -1,0 +1,29 @@
+{
+  "before_test_cli_sha256": "a8960e6b2405f73340d08a888b1f96be9a08d2b12de629e75bab90765c91ae18",
+  "after_test_cli_sha256": "b89d4dd59f403dbf7738d336ac7b88f8f703925eaf63aaca6beed925ba155dcc",
+  "setup_only_patch_sha256": "5b7e6f1bd104106791d60d6fc0172cd9e1d122234c8719b3ba188c27969bffeb",
+  "same_test_declarations": true,
+  "all_assertion_ASTs_exact": true,
+  "tracked_paths_changed_during_correction": [],
+  "frozen_v2_patch_unchanged": true,
+  "frozen_v2_reviews_unchanged": true,
+  "isolated_check": {
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "pipeline",
+      "-p",
+      "test_cli.py",
+      "-v"
+    ],
+    "cwd": "/Users/andyzhou/dev/.audit-evidence/2026-10-28/chartspur/packaging-correction/source",
+    "exit_code": 0,
+    "seconds": 0.107,
+    "log_sha256": "d560fc29226c69022ed78bf31c471b9c6db1090d9e1b74e11fc48c59dd3dff91"
+  },
+  "shared_runner_started": false,
+  "source_edits_ended": true
+}

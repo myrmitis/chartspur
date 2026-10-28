@@ -1,0 +1,1 @@
+exported 139 apps -> data/live.json | formula: dl_day=20000*(50/rank)^0.7

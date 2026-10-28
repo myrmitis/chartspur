@@ -1,0 +1,65 @@
+diff --git a/pipeline/summary.py b/pipeline/summary.py
+--- a/pipeline/summary.py
++++ b/pipeline/summary.py
+@@ -135,7 +135,7 @@
+         write_summary(args.brief, args.ledger, args.out)
+         print(f"wrote {args.out}")
+         return 0
+-    now = args.now or int(datetime.now(timezone.utc).timestamp())
++    now = args.now if args.now is not None else int(datetime.now(timezone.utc).timestamp())
+     day = args.day or datetime.fromtimestamp(now, timezone.utc).strftime("%Y-%m-%d")
+     refresh_run = None
+     if args.refresh_json:
+diff --git a/pipeline/test_cli.py b/pipeline/test_cli.py
+--- a/pipeline/test_cli.py
++++ b/pipeline/test_cli.py
+@@ -11,6 +11,14 @@
+ 
+ 
+ PIPELINE = Path(__file__).resolve().parent
++
++
++def write_summary_inputs(work):
++    (work / "brief.json").write_text(json.dumps({
++        "latest_ts": 2_000_000, "sample_genre": "Games",
++        "brief": {"apps": 40}, "checkout_open": False, "price_usd": 19,
++    }))
++    (work / "ledger.json").write_text("{}\n")
+ 
+ 
+ class PipelineCLITest(unittest.TestCase):
+@@ -59,11 +67,7 @@
+     def test_summary_writes_relative_output(self):
+         with tempfile.TemporaryDirectory() as directory:
+             work = Path(directory)
+-            (work / "brief.json").write_text(json.dumps({
+-                "latest_ts": 2_000_000, "sample_genre": "Games",
+-                "brief": {"apps": 40}, "checkout_open": False, "price_usd": 19,
+-            }))
+-            (work / "ledger.json").write_text("{}\n")
++            write_summary_inputs(work)
+             result = subprocess.run(
+                 [sys.executable, str(PIPELINE / "summary.py"),
+                  "--brief", "brief.json", "--ledger", "ledger.json",
+@@ -78,5 +82,21 @@
+             self.assertEqual(document["cash_collected_usd"], 0)
+ 
+ 
++    def test_summary_decision_honors_epoch_zero(self):
++        with tempfile.TemporaryDirectory() as directory:
++            work = Path(directory)
++            write_summary_inputs(work)
++            for now in (1, 0):
++                result = subprocess.run(
++                    [sys.executable, str(PIPELINE / "summary.py"),
++                     "--brief", "brief.json", "--ledger", "ledger.json",
++                     "--decide", "--event", "workflow_dispatch", "--now", str(now)],
++                    cwd=work, capture_output=True, text=True, timeout=30)
++                self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
++                document = json.loads(result.stdout)
++                self.assertIn("## Chartspur operating summary 1970-01-01", document["body"])
++                self.assertIn("<!-- appsignal-summary:1970-01-01 -->", document["body"])
++
++
+ if __name__ == "__main__":
+     unittest.main()

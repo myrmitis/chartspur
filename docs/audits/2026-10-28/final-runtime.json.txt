@@ -1,0 +1,22 @@
+{
+  "python": "3.14.7 (main, Aug  5 2026, 10:29:49) [Clang 21.0.0 (clang-2100.1.1.101)]",
+  "node": "v26.0.0",
+  "playwright": "1.58.0",
+  "chromium": [
+    {
+      "name": "chromium",
+      "revision": "1208",
+      "installByDefault": true,
+      "browserVersion": "145.0.7632.6",
+      "title": "Chrome for Testing"
+    },
+    {
+      "name": "chromium-headless-shell",
+      "revision": "1208",
+      "installByDefault": true,
+      "browserVersion": "145.0.7632.6",
+      "title": "Chrome Headless Shell"
+    }
+  ],
+  "runtime_changed": false
+}

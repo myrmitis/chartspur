@@ -109,7 +109,7 @@ def decide(event, already, summary, refresh_run, now, day):
 
 def write_summary(brief_path, ledger_path, out_path):
     summary = build_summary(load_json(brief_path), load_json(ledger_path))
-    os.makedirs(os.path.dirname(out_path), exist_ok=True)
+    os.makedirs(os.path.dirname(out_path) or ".", exist_ok=True)
     tmp = out_path + ".tmp"
     with open(tmp, "w", encoding="utf-8") as f:
         json.dump(summary, f, indent=2)
@@ -135,7 +135,7 @@ def main(argv=None):
         write_summary(args.brief, args.ledger, args.out)
         print(f"wrote {args.out}")
         return 0
-    now = args.now or int(datetime.now(timezone.utc).timestamp())
+    now = args.now if args.now is not None else int(datetime.now(timezone.utc).timestamp())
     day = args.day or datetime.fromtimestamp(now, timezone.utc).strftime("%Y-%m-%d")
     refresh_run = None
     if args.refresh_json:

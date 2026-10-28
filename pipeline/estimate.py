@@ -1,5 +1,5 @@
 """Rank+velocity estimates from stored snapshots. stdlib only. NOT exact data."""
-import json, time, os, sys
+import json, os, sys
 sys.path.insert(0, os.path.dirname(__file__))
 from db import conn
 # ponytail: power-curve heuristic; replace with fitted rank-demand model when you have ground truth.
@@ -16,7 +16,7 @@ def keywords(name, genre):
     return out[:8]
 
 def main():
-    db = conn(); now = int(time.time()); out = []
+    db = conn(); out = []
     rows = db.execute("""SELECT a.trackId,a.name,a.seller,a.genre,a.price,a.artwork,a.screenshots,a.description,
         s.rank,s.chart,s.rating,s.rating_count,s.ts FROM apps a
         JOIN snapshots s ON s.trackId=a.trackId

@@ -5,6 +5,7 @@ This is the stable index for this owner-controlled repository. Existing source d
 | Topic | Canonical reference |
 | --- | --- |
 | README.md | [README.md](../README.md) |
+| Test audit | [October 28 evidence](audits/2026-10-28/README.md) |
 | Existing documentation | [Browse docs](./) |
 | Open work | [Issues](https://github.com/myrmitis/chartspur/issues), [pull requests](https://github.com/myrmitis/chartspur/pulls) |
 | Change and release evidence | [Commits](https://github.com/myrmitis/chartspur/commits), [Actions](https://github.com/myrmitis/chartspur/actions), [releases](https://github.com/myrmitis/chartspur/releases) |

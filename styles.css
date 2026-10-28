@@ -27,7 +27,6 @@ tr[data-id]:hover td, tr[data-id].sel td { background: #16211c; }
 .tabs button.on { background: var(--acc); color: #04241a; }
 .warn { background: #221a08; border: 1px solid #6b5416; color: #f2cf6b; border-radius: 10px; padding: 10px 12px; font-size: 13px; }
 .empty { border: 1px dashed var(--line); border-radius: 10px; padding: 14px; color: var(--mut); font-size: 14px; }
-ol.steps li { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px; margin: 6px 0; list-style-position: inside; }
 .spin { display: inline-block; width: 14px; height: 14px; border: 2px solid var(--line); border-top-color: var(--acc); border-radius: 50%; animation: sp .7s linear infinite; vertical-align: -2px; margin-right: 6px; }
 @keyframes sp { to { transform: rotate(360deg); } }
 @media (max-width: 700px) { .grid { grid-template-columns: 1fr; } }

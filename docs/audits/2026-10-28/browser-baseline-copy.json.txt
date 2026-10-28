@@ -1,0 +1,51 @@
+{
+  "canonical": "49453b586d9a854c942ea02a4b77c9b85e7ab382",
+  "scope": "public static files and unchanged UI harness only; no SQLite, ops ledger, Stripe config, ingest, or writer",
+  "files": [
+    {
+      "path": "app.js",
+      "sha256": "300980eefbcdbff42efcacba75923923176ca52230fe4cac39ae276973893a6a",
+      "identical_to_canonical": true
+    },
+    {
+      "path": "data.js",
+      "sha256": "b7b9ba511508f514840229ff6971accc86f295d0fa7a63902ecb93d866173bd9",
+      "identical_to_canonical": true
+    },
+    {
+      "path": "index.html",
+      "sha256": "d08d4c9aae1268d6f47c36476f5fcc1ea830bfc5d724ffe815b17b09896d0b44",
+      "identical_to_canonical": true
+    },
+    {
+      "path": "brief.html",
+      "sha256": "5997c1d903234eb7e345f1c6a0b327efd3ca8a120a8fb4dae712e91ad3f41fd3",
+      "identical_to_canonical": true
+    },
+    {
+      "path": "styles.css",
+      "sha256": "ce730ee34e32724c0ccb8d9c94ebeaf51dc760ef3e9c1e0046f0dcd78679d14f",
+      "identical_to_canonical": true
+    },
+    {
+      "path": "seed.json",
+      "sha256": "769bc1118d03a8ceccf72de9b6bbed383cbaec5afcb0522252db97c179c49206",
+      "identical_to_canonical": true
+    },
+    {
+      "path": "data/live.json",
+      "sha256": "a1b2a33cafdc7bed22c5781b074a381e1e320278e9993a9384f63153eb807eb8",
+      "identical_to_canonical": true
+    },
+    {
+      "path": "data/brief.json",
+      "sha256": "84e9ed10b4e993a0151743cea03c4ea335c0f1a8b879f5c164430ec79a7a84a7",
+      "identical_to_canonical": true
+    },
+    {
+      "path": "pipeline/verify_ui.py",
+      "sha256": "8a80d924362c6e8c422201bbc04f2a3af34799973ee9f852eb2897296fc6e1df",
+      "identical_to_canonical": true
+    }
+  ]
+}

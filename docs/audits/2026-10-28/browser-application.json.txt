@@ -1,0 +1,24 @@
+{
+  "base": "49453b586d9a854c942ea02a4b77c9b85e7ab382",
+  "applied_patch_sha256": "70ac902ec9167943c2f5f6ef0489793607d77ef7a3768d177067c8b71ba1873b",
+  "only_applied_paths": [
+    "app.js",
+    "styles.css",
+    "pipeline/verify_ui.py"
+  ],
+  "exact_reviewed_file_equivalence": true,
+  "old_assertions": 12,
+  "candidate_assertions": 19,
+  "all_old_assertions_preserved": true,
+  "all_old_lines_in_order": true,
+  "existing_test_method_declarations_unchanged": true,
+  "existing_test_methods": 37,
+  "data_bytes_unchanged": true,
+  "data_files": 4,
+  "file_sha256": {
+    "app.js": "36483424a79dbcd636afc15451e2d8bbad0a936b654a7ebffc96130644839c38",
+    "styles.css": "3d63863684fa0c743c995b923a6e724fda6a10ddf27c4e651afe383ccb118494",
+    "pipeline/verify_ui.py": "6484974136a29c116771b403af34bb1c98186f6cf14f7c96f615a61a97828388"
+  },
+  "no_test_runner_started": true
+}

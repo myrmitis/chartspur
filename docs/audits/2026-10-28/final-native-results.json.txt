@@ -1,0 +1,68 @@
+[
+  {
+    "name": "js-app",
+    "argv": [
+      "node",
+      "--check",
+      "app.js"
+    ],
+    "cwd": "/Users/andyzhou/dev/chartspur--deep-test-audit",
+    "started_utc": "2026-10-28T06:03:29.113079+00:00",
+    "finished_utc": "2026-10-28T06:03:29.196102+00:00",
+    "exit_code": 0
+  },
+  {
+    "name": "js-data",
+    "argv": [
+      "node",
+      "--check",
+      "data.js"
+    ],
+    "cwd": "/Users/andyzhou/dev/chartspur--deep-test-audit",
+    "started_utc": "2026-10-28T06:03:29.196313+00:00",
+    "finished_utc": "2026-10-28T06:03:29.237991+00:00",
+    "exit_code": 0
+  },
+  {
+    "name": "syntax-json",
+    "argv": [
+      "python3",
+      "-c",
+      "import ast\nimport json\nfrom pathlib import Path\nfor path in sorted(Path(\"pipeline\").glob(\"*.py\")):\n    ast.parse(path.read_text(encoding=\"utf-8\"), filename=str(path))\nfor name in (\"seed.json\", \"data/live.json\", \"data/brief.json\", \"ops/ledger.json\", \"ops/payments.json\", \"ops/summary.json\", \"ops/experiments/001-category-brief.json\"):\n    with Path(name).open(encoding=\"utf-8\") as source:\n        json.load(source)\nprint(\"Python syntax and JSON parsing passed; no pipeline entrypoint executed.\")\n"
+    ],
+    "cwd": "/Users/andyzhou/dev/chartspur--deep-test-audit",
+    "started_utc": "2026-10-28T06:03:29.238189+00:00",
+    "finished_utc": "2026-10-28T06:03:29.274719+00:00",
+    "exit_code": 0
+  },
+  {
+    "name": "offline",
+    "argv": [
+      "python3",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "pipeline",
+      "-p",
+      "test_*.py",
+      "-v"
+    ],
+    "cwd": "/Users/andyzhou/dev/chartspur--deep-test-audit",
+    "started_utc": "2026-10-28T06:03:29.275088+00:00",
+    "finished_utc": "2026-10-28T06:03:38.156116+00:00",
+    "exit_code": 0
+  },
+  {
+    "name": "whitespace",
+    "argv": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "cwd": "/Users/andyzhou/dev/chartspur--deep-test-audit",
+    "started_utc": "2026-10-28T06:03:38.156612+00:00",
+    "finished_utc": "2026-10-28T06:03:38.186529+00:00",
+    "exit_code": 0
+  }
+]
