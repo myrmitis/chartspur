@@ -1,0 +1,107 @@
+{
+  "base": "49453b586d9a854c942ea02a4b77c9b85e7ab382",
+  "python": "3.14.7 (main, Aug  5 2026, 10:29:49) [Clang 21.0.0 (clang-2100.1.1.101)]",
+  "worktree": "/Users/andyzhou/dev/.audit-evidence/2026-10-28/chartspur/public-pipeline/source",
+  "copied_public_database": true,
+  "copied_ops_ledger_or_payment_config": false,
+  "allowed_network": [
+    "https://itunes.apple.com/us/rss/",
+    "https://itunes.apple.com/lookup"
+  ],
+  "source_and_public_data_hashes_before": {
+    ".nojekyll": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "app.js": "300980eefbcdbff42efcacba75923923176ca52230fe4cac39ae276973893a6a",
+    "brief.html": "5997c1d903234eb7e345f1c6a0b327efd3ca8a120a8fb4dae712e91ad3f41fd3",
+    "data.js": "b7b9ba511508f514840229ff6971accc86f295d0fa7a63902ecb93d866173bd9",
+    "data/METHOD.md": "f8758823b9f55e68fa14f7fdcd67fb64e21b82691dd99f67a83f7e7917c1e101",
+    "data/appintel.db": "ccf6a1a4e7496b0bcf178e9c007273ed62045574af96e659272dc65efdab65fd",
+    "data/brief.json": "84e9ed10b4e993a0151743cea03c4ea335c0f1a8b879f5c164430ec79a7a84a7",
+    "data/live.json": "a1b2a33cafdc7bed22c5781b074a381e1e320278e9993a9384f63153eb807eb8",
+    "edge/SEO.md": "f81fa2444cc4c607af477556d7c279f9a64b6633582f2c803618f3b345b420d0",
+    "edge/worker.js": "72d8da80b689ad706a2ccad7498e4b8a8f513c986efa9b0ea77cb43260bd54cf",
+    "edge/wrangler.jsonc": "7664aa035869235f6985f1956fe615b3f48a3411623693d2ee7c8da59585d946",
+    "index.html": "d08d4c9aae1268d6f47c36476f5fcc1ea830bfc5d724ffe815b17b09896d0b44",
+    "pipeline/brief.py": "5201f9ad0d25cc473fcb0ffdf5567b2863a2404ae30630c8f7aa2282136bc61e",
+    "pipeline/db.py": "a6b398f43e7c8f005a887a1e6a28802c7e8bc215ecc72df7c713f46f4b14a9e7",
+    "pipeline/estimate.py": "e680157713686485338e99275f49b30752aeff2ae5b06d42b9ee7625f1c1bc65",
+    "pipeline/ingest.py": "e3efc1115884a3087d9f5bca08cfe6f195d2c7f276a26113a4bb864720cd4743",
+    "pipeline/post_summary.sh": "fe8d9b2ff4d9a406a165842f508e5b2b777ab7edc135ab283faf313acc95243b",
+    "pipeline/run.sh": "634f0888007ab8baf46191b5656d043e0368da2857206151c99137ea91f2e0a5",
+    "pipeline/summary.py": "71998274f5728c22c439a235c1327c2a3f9d56902899ba409551c7bb0860b2c5",
+    "pipeline/test_brief.py": "dc60dade61b7c479326d4421d70ea5a57f9bdb985a99962c75746e6ddaaacd09",
+    "pipeline/test_edge_seo.py": "7c68bf82a50017ca04b442b84c6ec80b51d9313f400fc0635508b03d62784ec5",
+    "pipeline/test_pipeline.py": "a4d022e10222aef9662a931c3f58a7b59d2ad8c273a0737196f838728c62ebc6",
+    "pipeline/test_summary.py": "14e81a80c1a9c34a1cc2e912a5c05d2e6d7dda630f76f6fe42002b58eef1afb0",
+    "pipeline/verify_ui.py": "8a80d924362c6e8c422201bbc04f2a3af34799973ee9f852eb2897296fc6e1df",
+    "seed.json": "769bc1118d03a8ceccf72de9b6bbed383cbaec5afcb0522252db97c179c49206",
+    "styles.css": "ce730ee34e32724c0ccb8d9c94ebeaf51dc760ef3e9c1e0046f0dcd78679d14f"
+  },
+  "stages": [
+    {
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "pipeline/ingest.py"
+      ],
+      "cwd": "/Users/andyzhou/dev/.audit-evidence/2026-10-28/chartspur/public-pipeline/source",
+      "exit_code": 0,
+      "seconds": 12.318,
+      "log": "public-pipeline/ingest.log",
+      "log_sha256": "f3810352d64157b854ee897faf313906c61b5609d579fb0b7bf7f315f5cf233d"
+    },
+    {
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "pipeline/estimate.py"
+      ],
+      "cwd": "/Users/andyzhou/dev/.audit-evidence/2026-10-28/chartspur/public-pipeline/source",
+      "exit_code": 0,
+      "seconds": 0.045,
+      "log": "public-pipeline/estimate.log",
+      "log_sha256": "8bc7516731d6fa8fdc05712a3abdf8eefa0db4605a17000425d4e6006a9e2cf0"
+    }
+  ],
+  "source_and_public_data_hashes_after": {
+    ".nojekyll": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "app.js": "300980eefbcdbff42efcacba75923923176ca52230fe4cac39ae276973893a6a",
+    "brief.html": "5997c1d903234eb7e345f1c6a0b327efd3ca8a120a8fb4dae712e91ad3f41fd3",
+    "data.js": "b7b9ba511508f514840229ff6971accc86f295d0fa7a63902ecb93d866173bd9",
+    "data/METHOD.md": "f8758823b9f55e68fa14f7fdcd67fb64e21b82691dd99f67a83f7e7917c1e101",
+    "data/appintel.db": "d090ccad9a2f4d135ac880ac620aa2de08f06f902be79ebd163ae3d9b4bc07cb",
+    "data/brief.json": "84e9ed10b4e993a0151743cea03c4ea335c0f1a8b879f5c164430ec79a7a84a7",
+    "data/live.json": "4104fe10330a412cb030ff1487854367eefd6edf5519d2f7527609e00eb78bd6",
+    "edge/SEO.md": "f81fa2444cc4c607af477556d7c279f9a64b6633582f2c803618f3b345b420d0",
+    "edge/worker.js": "72d8da80b689ad706a2ccad7498e4b8a8f513c986efa9b0ea77cb43260bd54cf",
+    "edge/wrangler.jsonc": "7664aa035869235f6985f1956fe615b3f48a3411623693d2ee7c8da59585d946",
+    "index.html": "d08d4c9aae1268d6f47c36476f5fcc1ea830bfc5d724ffe815b17b09896d0b44",
+    "pipeline/brief.py": "5201f9ad0d25cc473fcb0ffdf5567b2863a2404ae30630c8f7aa2282136bc61e",
+    "pipeline/db.py": "a6b398f43e7c8f005a887a1e6a28802c7e8bc215ecc72df7c713f46f4b14a9e7",
+    "pipeline/estimate.py": "e680157713686485338e99275f49b30752aeff2ae5b06d42b9ee7625f1c1bc65",
+    "pipeline/ingest.py": "e3efc1115884a3087d9f5bca08cfe6f195d2c7f276a26113a4bb864720cd4743",
+    "pipeline/post_summary.sh": "fe8d9b2ff4d9a406a165842f508e5b2b777ab7edc135ab283faf313acc95243b",
+    "pipeline/run.sh": "634f0888007ab8baf46191b5656d043e0368da2857206151c99137ea91f2e0a5",
+    "pipeline/summary.py": "71998274f5728c22c439a235c1327c2a3f9d56902899ba409551c7bb0860b2c5",
+    "pipeline/test_brief.py": "dc60dade61b7c479326d4421d70ea5a57f9bdb985a99962c75746e6ddaaacd09",
+    "pipeline/test_edge_seo.py": "7c68bf82a50017ca04b442b84c6ec80b51d9313f400fc0635508b03d62784ec5",
+    "pipeline/test_pipeline.py": "a4d022e10222aef9662a931c3f58a7b59d2ad8c273a0737196f838728c62ebc6",
+    "pipeline/test_summary.py": "14e81a80c1a9c34a1cc2e912a5c05d2e6d7dda630f76f6fe42002b58eef1afb0",
+    "pipeline/verify_ui.py": "8a80d924362c6e8c422201bbc04f2a3af34799973ee9f852eb2897296fc6e1df",
+    "seed.json": "769bc1118d03a8ceccf72de9b6bbed383cbaec5afcb0522252db97c179c49206",
+    "styles.css": "ce730ee34e32724c0ccb8d9c94ebeaf51dc760ef3e9c1e0046f0dcd78679d14f"
+  },
+  "changed_copy_paths": [
+    "data/appintel.db",
+    "data/live.json"
+  ],
+  "public_database_observation": {
+    "apps": 281,
+    "latest_snapshot": 1793164929,
+    "latest_rows": 150
+  },
+  "public_export_observation": {
+    "rows": 139,
+    "distinct_ids": 139,
+    "snapshot_timestamps": [
+      1793164929
+    ]
+  }
+}

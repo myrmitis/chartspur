@@ -1,0 +1,130 @@
+{
+  "base": "49453b586d9a854c942ea02a4b77c9b85e7ab382",
+  "all_frozen_source_and_document_bytes_unchanged": true,
+  "source_file_count": 88,
+  "all_stored_data_bytes_unchanged": true,
+  "data_file_count": 4,
+  "head_unchanged": true,
+  "candidate_harness_sha256": "6484974136a29c116771b403af34bb1c98186f6cf14f7c96f615a61a97828388",
+  "copies": {
+    "checked-in": {
+      "all_source_and_data_hashes_unchanged": true,
+      "file_count": 9,
+      "rows": 138,
+      "screenshot_sha256": "7ba540225cea2cb95c2849b14d84776c22811f0faece92ad6865548887300018"
+    },
+    "refreshed": {
+      "all_source_and_data_hashes_unchanged": true,
+      "file_count": 9,
+      "rows": 139,
+      "screenshot_sha256": "4001196d0fa5c9c18d2f7306bb2810998441025cdee3f64ffe58628a3f2ae71e"
+    }
+  },
+  "native_commands": [
+    {
+      "name": "js-app",
+      "argv": [
+        "node",
+        "--check",
+        "app.js"
+      ],
+      "cwd": "/Users/andyzhou/dev/chartspur--deep-test-audit",
+      "started_utc": "2026-10-28T06:03:29.113079+00:00",
+      "finished_utc": "2026-10-28T06:03:29.196102+00:00",
+      "exit_code": 0
+    },
+    {
+      "name": "js-data",
+      "argv": [
+        "node",
+        "--check",
+        "data.js"
+      ],
+      "cwd": "/Users/andyzhou/dev/chartspur--deep-test-audit",
+      "started_utc": "2026-10-28T06:03:29.196313+00:00",
+      "finished_utc": "2026-10-28T06:03:29.237991+00:00",
+      "exit_code": 0
+    },
+    {
+      "name": "syntax-json",
+      "argv": [
+        "python3",
+        "-c",
+        "import ast\nimport json\nfrom pathlib import Path\nfor path in sorted(Path(\"pipeline\").glob(\"*.py\")):\n    ast.parse(path.read_text(encoding=\"utf-8\"), filename=str(path))\nfor name in (\"seed.json\", \"data/live.json\", \"data/brief.json\", \"ops/ledger.json\", \"ops/payments.json\", \"ops/summary.json\", \"ops/experiments/001-category-brief.json\"):\n    with Path(name).open(encoding=\"utf-8\") as source:\n        json.load(source)\nprint(\"Python syntax and JSON parsing passed; no pipeline entrypoint executed.\")\n"
+      ],
+      "cwd": "/Users/andyzhou/dev/chartspur--deep-test-audit",
+      "started_utc": "2026-10-28T06:03:29.238189+00:00",
+      "finished_utc": "2026-10-28T06:03:29.274719+00:00",
+      "exit_code": 0
+    },
+    {
+      "name": "offline",
+      "argv": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "pipeline",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "cwd": "/Users/andyzhou/dev/chartspur--deep-test-audit",
+      "started_utc": "2026-10-28T06:03:29.275088+00:00",
+      "finished_utc": "2026-10-28T06:03:38.156116+00:00",
+      "exit_code": 0
+    },
+    {
+      "name": "whitespace",
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "cwd": "/Users/andyzhou/dev/chartspur--deep-test-audit",
+      "started_utc": "2026-10-28T06:03:38.156612+00:00",
+      "finished_utc": "2026-10-28T06:03:38.186529+00:00",
+      "exit_code": 0
+    }
+  ],
+  "browser_commands": [
+    {
+      "variant": "checked-in",
+      "argv": [
+        "python3",
+        "/Users/andyzhou/dev/.audit-evidence/2026-10-28/chartspur/final-candidate/checked-in/source/pipeline/verify_ui.py",
+        "8913"
+      ],
+      "cwd": "/Users/andyzhou/dev/.audit-evidence/2026-10-28/chartspur/final-candidate/checked-in/output",
+      "started_utc": "2026-10-28T06:04:38.163989+00:00",
+      "finished_utc": "2026-10-28T06:04:44.476974+00:00",
+      "exit_code": 0
+    },
+    {
+      "variant": "refreshed",
+      "argv": [
+        "python3",
+        "/Users/andyzhou/dev/.audit-evidence/2026-10-28/chartspur/final-candidate/refreshed/source/pipeline/verify_ui.py",
+        "8914"
+      ],
+      "cwd": "/Users/andyzhou/dev/.audit-evidence/2026-10-28/chartspur/final-candidate/refreshed/output",
+      "started_utc": "2026-10-28T06:04:44.477473+00:00",
+      "finished_utc": "2026-10-28T06:04:49.692245+00:00",
+      "exit_code": 0
+    }
+  ],
+  "own_servers_stopped": [
+    {
+      "session_id": 93055,
+      "port": 8913,
+      "exit_code": 0
+    },
+    {
+      "session_id": 4799,
+      "port": 8914,
+      "exit_code": 0
+    }
+  ],
+  "all_owned_runners_ended": true
+}

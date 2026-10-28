@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "python3",
+    "/Users/andyzhou/dev/.audit-evidence/2026-10-28/chartspur/genre-proof/v3/proposed-verify_ui.py",
+    "8916"
+  ],
+  "cwd": "/Users/andyzhou/dev/.audit-evidence/2026-10-28/chartspur/genre-proof/v3/output",
+  "exit_code": 0,
+  "server_session_id": 14873,
+  "server_exit_code": 0,
+  "all_browser_runners_ended": true
+}

@@ -46,3 +46,21 @@ python3 pipeline/ingest.py && python3 pipeline/estimate.py
 - **Empty:** Ads (Meta Ad Library token) and Viral (YouTube Data API key).
 
 Not affiliated with appkittie.
+
+## Verification
+
+Run the offline gate:
+
+```sh
+python3 -m unittest discover -s pipeline -p 'test_*.py' -v
+```
+
+Serve the checkout with the local command above. In a second terminal, run the existing browser check:
+
+```sh
+python3 pipeline/verify_ui.py 8903
+```
+
+The browser check writes `data/verify.png`. Hosted CI runs the offline and syntax checks; run Playwright locally as well.
+Use a disposable copy for pipeline verification so the committed snapshot stays intact.
+See [the test audit](docs/audits/2026-10-28/README.md) for retirement proof and actual checks.

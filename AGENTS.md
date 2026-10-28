@@ -17,9 +17,10 @@ visitor does.
   the real `brief.html` → Stripe Payment Link path in a browser.
 - Pipeline: run it for real — `python3 pipeline/ingest.py && python3
   pipeline/estimate.py` — and check `data/live.json` and the rendered site.
-- Gate: `.github/workflows/ci.yml` (`python -m unittest discover -s pipeline`
-  plus `verify_ui.py`) stays green. Existing `pipeline/test_*.py` are a
-  contract: never delete, skip, weaken or loosen an assertion to go green.
+- Hosted gate: `.github/workflows/ci.yml` runs offline unittest discovery
+  and syntax checks. Run the local Web E2E command above as a separate
+  required check. Existing `pipeline/test_*.py` are a contract: never delete,
+  skip, weaken or loosen an assertion to go green.
 - Exception, ask first: pure logic with a clear spec (the estimate formulas
   in `data/METHOD.md`, brief diffing).
 

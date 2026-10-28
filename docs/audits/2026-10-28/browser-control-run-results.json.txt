@@ -1,0 +1,42 @@
+[
+  {
+    "name": "red",
+    "argv": [
+      "python3",
+      "/Users/andyzhou/dev/.audit-evidence/2026-10-28/chartspur/genre-proof/v2/proposed-verify_ui.py",
+      "8913"
+    ],
+    "cwd": "/Users/andyzhou/dev/.audit-evidence/2026-10-28/chartspur/genre-proof/v2/outputs/red",
+    "exit_code": 1
+  },
+  {
+    "name": "search-old",
+    "argv": [
+      "python3",
+      "/Users/andyzhou/dev/.audit-evidence/2026-10-28/chartspur/genre-proof/v2/proposed-verify_ui.py",
+      "8917"
+    ],
+    "cwd": "/Users/andyzhou/dev/.audit-evidence/2026-10-28/chartspur/genre-proof/v2/outputs/search-old",
+    "exit_code": 1
+  },
+  {
+    "name": "lookup-old",
+    "argv": [
+      "python3",
+      "/Users/andyzhou/dev/.audit-evidence/2026-10-28/chartspur/genre-proof/v2/proposed-verify_ui.py",
+      "8918"
+    ],
+    "cwd": "/Users/andyzhou/dev/.audit-evidence/2026-10-28/chartspur/genre-proof/v2/outputs/lookup-old",
+    "exit_code": 1
+  },
+  {
+    "name": "fixed",
+    "argv": [
+      "python3",
+      "/Users/andyzhou/dev/.audit-evidence/2026-10-28/chartspur/genre-proof/v2/proposed-verify_ui.py",
+      "8916"
+    ],
+    "cwd": "/Users/andyzhou/dev/.audit-evidence/2026-10-28/chartspur/genre-proof/v2/outputs/fixed",
+    "exit_code": 0
+  }
+]

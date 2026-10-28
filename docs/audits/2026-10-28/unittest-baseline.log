@@ -1,0 +1,41 @@
+test_chart_that_was_fully_left_still_appears (test_brief.BriefTest.test_chart_that_was_fully_left_still_appears) ... ok
+test_checkout_link_renders_only_when_valid (test_brief.BriefTest.test_checkout_link_renders_only_when_valid) ... ok
+test_load_snapshot_roundtrip (test_brief.BriefTest.test_load_snapshot_roundtrip) ... ok
+test_no_comparison_does_not_mark_everyone_entered (test_brief.BriefTest.test_no_comparison_does_not_mark_everyone_entered) ... ok
+test_payment_link_allowlist (test_brief.BriefTest.test_payment_link_allowlist) ... ok
+test_price_bounds (test_brief.BriefTest.test_price_bounds) ... ok
+test_request_url_encodes_genre (test_brief.BriefTest.test_request_url_encodes_genre) ... ok
+test_sample_genre_and_movement (test_brief.BriefTest.test_sample_genre_and_movement) ... ok
+test_aliases_redirect_once_before_proxy_or_discovery_handling (test_edge_seo.EdgeSEOTests.test_aliases_redirect_once_before_proxy_or_discovery_handling) ... ok
+test_discovery_responses_keep_bounded_cache_and_security_headers (test_edge_seo.EdgeSEOTests.test_discovery_responses_keep_bounded_cache_and_security_headers) ... ok
+test_existing_public_pages_and_data_still_proxy_to_pages (test_edge_seo.EdgeSEOTests.test_existing_public_pages_and_data_still_proxy_to_pages) ... ok
+test_head_matches_get_headers_and_has_no_body (test_edge_seo.EdgeSEOTests.test_head_matches_get_headers_and_has_no_body) ... ok
+test_http_ports_redirect_to_default_https_apex (test_edge_seo.EdgeSEOTests.test_http_ports_redirect_to_default_https_apex) ... ok
+test_https_apex_proxy_preserves_query_and_external_payment_redirect (test_edge_seo.EdgeSEOTests.test_https_apex_proxy_preserves_query_and_external_payment_redirect) ... ok
+test_https_nondefault_ports_keep_existing_behavior (test_edge_seo.EdgeSEOTests.test_https_nondefault_ports_keep_existing_behavior) ... ok
+test_managed_training_restrictions_survive_composition (test_edge_seo.EdgeSEOTests.test_managed_training_restrictions_survive_composition) ... ok
+test_nonread_methods_remain_rejected (test_edge_seo.EdgeSEOTests.test_nonread_methods_remain_rejected) ... ok
+test_only_exact_discovery_paths_are_intercepted (test_edge_seo.EdgeSEOTests.test_only_exact_discovery_paths_are_intercepted) ... ok
+test_query_and_fragment_never_enter_discovery_output (test_edge_seo.EdgeSEOTests.test_query_and_fragment_never_enter_discovery_output) ... ok
+test_redirects_preserve_encoded_paths_and_queries (test_edge_seo.EdgeSEOTests.test_redirects_preserve_encoded_paths_and_queries) ... ok
+test_robots_declares_map_without_overriding_managed_policy (test_edge_seo.EdgeSEOTests.test_robots_declares_map_without_overriding_managed_policy) ... ok
+test_sitemap_is_valid_xml_with_only_approved_canonicals (test_edge_seo.EdgeSEOTests.test_sitemap_is_valid_xml_with_only_approved_canonicals) ... ok
+test_upstream_error_does_not_become_a_success (test_edge_seo.EdgeSEOTests.test_upstream_error_does_not_become_a_success) ... ok
+test_upstream_head_status_and_headers_are_preserved (test_edge_seo.EdgeSEOTests.test_upstream_head_status_and_headers_are_preserved) ... ok
+test_upstream_redirects_keep_existing_custom_domain_rewrite (test_edge_seo.EdgeSEOTests.test_upstream_redirects_keep_existing_custom_domain_rewrite) ... ok
+test_www_redirect_keeps_existing_path_and_query_behavior (test_edge_seo.EdgeSEOTests.test_www_redirect_keeps_existing_path_and_query_behavior) ... ok
+test_dl_curve (test_pipeline.T.test_dl_curve) ... ok
+test_keywords (test_pipeline.T.test_keywords) ... ok
+test_shots_parse (test_pipeline.T.test_shots_parse) ... ok
+test_velocity_none_without_prev (test_pipeline.T.test_velocity_none_without_prev) ... ok
+test_decide_posts_once (test_summary.SummaryTest.test_decide_posts_once) ... ok
+test_failed_refresh_is_unhealthy (test_summary.SummaryTest.test_failed_refresh_is_unhealthy) ... ok
+test_fresh_success_is_healthy (test_summary.SummaryTest.test_fresh_success_is_healthy) ... ok
+test_missed_schedule_is_unhealthy (test_summary.SummaryTest.test_missed_schedule_is_unhealthy) ... ok
+test_next_action_tracks_checkout (test_summary.SummaryTest.test_next_action_tracks_checkout) ... ok
+test_old_snapshot_is_unhealthy (test_summary.SummaryTest.test_old_snapshot_is_unhealthy) ... ok
+
+----------------------------------------------------------------------
+Ran 36 tests in 8.659s
+
+OK

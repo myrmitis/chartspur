@@ -61,7 +61,7 @@ async function doSearch(q) {
     const r = await fetch("https://itunes.apple.com/search?term=" + encodeURIComponent(q) + "&entity=software&limit=12");
     if (!r.ok) throw new Error("http " + r.status);
     const j = await r.json();
-    live = (j.results || []).map(x => ({ trackId: x.trackId, trackName: x.trackName, sellerName: x.sellerName, primaryGenreName: x.primaryGenre, price: x.price || 0, averageUserRating: x.averageUserRating || 0, userRatingCount: x.userRatingCount || 0, releaseDate: x.releaseDate }));
+    live = (j.results || []).map(x => ({ trackId: x.trackId, trackName: x.trackName, sellerName: x.sellerName, primaryGenreName: x.primaryGenreName, price: x.price || 0, averageUserRating: x.averageUserRating || 0, userRatingCount: x.userRatingCount || 0, releaseDate: x.releaseDate }));
   } catch { offline = true; }
   const ql = q.toLowerCase();
   const base = state.seeds.filter(a => (a.trackName + " " + a.sellerName + " " + a.primaryGenreName).toLowerCase().includes(ql));
@@ -81,7 +81,7 @@ async function show(id) {
     try {
       const r = await fetch("https://itunes.apple.com/lookup?id=" + id);
       const j = await r.json(); const x = j.results[0];
-      a = { trackId: x.trackId, trackName: x.trackName, sellerName: x.sellerName, primaryGenreName: x.primaryGenre, price: x.price || 0, averageUserRating: x.averageUserRating || 0, userRatingCount: x.userRatingCount || 0, releaseDate: x.releaseDate };
+      a = { trackId: x.trackId, trackName: x.trackName, sellerName: x.sellerName, primaryGenreName: x.primaryGenreName, price: x.price || 0, averageUserRating: x.averageUserRating || 0, userRatingCount: x.userRatingCount || 0, releaseDate: x.releaseDate };
     } catch {
       $("#detail").innerHTML = `<div class="card empty">Couldn't load this app. You're likely offline — try again.</div>`;
       return;

@@ -1,0 +1,3 @@
+Metadata fixture: https://itunes.apple.com/search?term=Chartspur%20metadata%20audit&entity=software&limit=12
+Metadata fixture: https://itunes.apple.com/lookup?id=900000001
+UI OK: 138 rows, detail renders, no console errors

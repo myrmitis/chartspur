@@ -1,0 +1,10 @@
+{
+  "whole": {
+    "exit_code": 2,
+    "diagnostic_lines": 22
+  },
+  "source": {
+    "exit_code": 0,
+    "diagnostic_lines": 0
+  }
+}

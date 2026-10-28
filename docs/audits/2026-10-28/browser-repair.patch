@@ -1,0 +1,83 @@
+--- a/app.js
++++ b/app.js
+@@ -61,7 +61,7 @@
+     const r = await fetch("https://itunes.apple.com/search?term=" + encodeURIComponent(q) + "&entity=software&limit=12");
+     if (!r.ok) throw new Error("http " + r.status);
+     const j = await r.json();
+-    live = (j.results || []).map(x => ({ trackId: x.trackId, trackName: x.trackName, sellerName: x.sellerName, primaryGenreName: x.primaryGenre, price: x.price || 0, averageUserRating: x.averageUserRating || 0, userRatingCount: x.userRatingCount || 0, releaseDate: x.releaseDate }));
++    live = (j.results || []).map(x => ({ trackId: x.trackId, trackName: x.trackName, sellerName: x.sellerName, primaryGenreName: x.primaryGenreName, price: x.price || 0, averageUserRating: x.averageUserRating || 0, userRatingCount: x.userRatingCount || 0, releaseDate: x.releaseDate }));
+   } catch { offline = true; }
+   const ql = q.toLowerCase();
+   const base = state.seeds.filter(a => (a.trackName + " " + a.sellerName + " " + a.primaryGenreName).toLowerCase().includes(ql));
+@@ -81,7 +81,7 @@
+     try {
+       const r = await fetch("https://itunes.apple.com/lookup?id=" + id);
+       const j = await r.json(); const x = j.results[0];
+-      a = { trackId: x.trackId, trackName: x.trackName, sellerName: x.sellerName, primaryGenreName: x.primaryGenre, price: x.price || 0, averageUserRating: x.averageUserRating || 0, userRatingCount: x.userRatingCount || 0, releaseDate: x.releaseDate };
++      a = { trackId: x.trackId, trackName: x.trackName, sellerName: x.sellerName, primaryGenreName: x.primaryGenreName, price: x.price || 0, averageUserRating: x.averageUserRating || 0, userRatingCount: x.userRatingCount || 0, releaseDate: x.releaseDate };
+     } catch {
+       $("#detail").innerHTML = `<div class="card empty">Couldn't load this app. You're likely offline — try again.</div>`;
+       return;
+--- a/pipeline/verify_ui.py
++++ b/pipeline/verify_ui.py
+@@ -1,5 +1,6 @@
+ """UI self-check: pipeline rows render, detail opens, no console errors."""
+ import sys
++from urllib.parse import urlsplit
+ from playwright.sync_api import sync_playwright
+ 
+ port = sys.argv[1] if len(sys.argv) > 1 else "8903"
+@@ -44,5 +45,43 @@
+     assert calm.locator("tr[data-id]").first.evaluate("e => getComputedStyle(e).opacity") == "1"
+     assert not errors, errors
+     calm.close()
++    # Search and lookup must retain Apple's public genre field.
++    fixture = page.request.get(f"http://127.0.0.1:{port}/seed.json").json()[0]
++    fixture.update(trackId=900000001, trackName="Chartspur metadata audit", sellerName="Audit fixture")
++    assert fixture["primaryGenreName"]
++    assert "primaryGenre" not in fixture
++    metadata_context = browser.new_context(reduced_motion="reduce")
++    metadata_requests = []
++    def metadata_request(route):
++        url = urlsplit(route.request.url)
++        if url.netloc == f"127.0.0.1:{port}":
++            return route.continue_()
++        if url.netloc == "itunes.apple.com" and url.path in ("/search", "/lookup"):
++            metadata_requests.append(url.path)
++            print(f"Metadata fixture: {route.request.url}", flush=True)
++            return route.fulfill(json={"resultCount": 1, "results": [fixture]},
++                                 headers={"Access-Control-Allow-Origin": "*"})
++        return route.abort()
++    metadata_context.route("**/*", metadata_request)
++    metadata = metadata_context.new_page()
++    metadata.on("pageerror", lambda e: errors.append(str(e)))
++    metadata.goto(f"http://127.0.0.1:{port}/", wait_until="networkidle")
++    metadata.locator("#q").fill("Chartspur metadata audit")
++    metadata.locator("#go").click()
++    result = metadata.locator('tr[data-id="900000001"]')
++    result.wait_for()
++    assert result.get_by_role("cell", name=fixture["primaryGenreName"], exact=True).count() == 1, "search genre missing"
++    metadata.locator("#genre").select_option(label=fixture["primaryGenreName"])
++    assert result.count() == 1, "genre filter must retain the matching search result"
++    metadata.close()
++    metadata = metadata_context.new_page()
++    metadata.on("pageerror", lambda e: errors.append(str(e)))
++    metadata.goto(f"http://127.0.0.1:{port}/?id=900000001", wait_until="networkidle")
++    metadata.locator("#detail h2").wait_for()
++    genre_line = f"{fixture['sellerName']} · {fixture['primaryGenreName']} ·"
++    assert metadata.locator("#detail").get_by_text(genre_line, exact=False).count() == 1, "lookup genre missing"
++    assert set(metadata_requests) == {"/search", "/lookup"}, metadata_requests
++    assert not errors, errors
++    metadata_context.close()
+     browser.close()
+ print(f"UI OK: {rows} rows, detail renders, no console errors")
+--- a/styles.css
++++ b/styles.css
+@@ -27,7 +27,6 @@
+ .tabs button.on { background: var(--acc); color: #04241a; }
+ .warn { background: #221a08; border: 1px solid #6b5416; color: #f2cf6b; border-radius: 10px; padding: 10px 12px; font-size: 13px; }
+ .empty { border: 1px dashed var(--line); border-radius: 10px; padding: 14px; color: var(--mut); font-size: 14px; }
+-ol.steps li { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px; margin: 6px 0; list-style-position: inside; }
+ .spin { display: inline-block; width: 14px; height: 14px; border: 2px solid var(--line); border-top-color: var(--acc); border-radius: 50%; animation: sp .7s linear infinite; vertical-align: -2px; margin-right: 6px; }
+ @keyframes sp { to { transform: rotate(360deg); } }
+ @media (max-width: 700px) { .grid { grid-template-columns: 1fr; } }

@@ -1,0 +1,316 @@
+{
+  "source_base": "49453b586d9a854c942ea02a4b77c9b85e7ab382",
+  "python": "3.14.7 (main, Aug  5 2026, 10:29:49) [Clang 21.0.0 (clang-2100.1.1.101)]",
+  "shared_source_edits": false,
+  "tracked_or_real_data_used": false,
+  "network_or_outbound_actions": false,
+  "source_hashes": {
+    "db.py": "a6b398f43e7c8f005a887a1e6a28802c7e8bc215ecc72df7c713f46f4b14a9e7",
+    "estimate.py": "e680157713686485338e99275f49b30752aeff2ae5b06d42b9ee7625f1c1bc65",
+    "summary.py": "71998274f5728c22c439a235c1327c2a3f9d56902899ba409551c7bb0860b2c5",
+    "test_pipeline.py": "a4d022e10222aef9662a931c3f58a7b59d2ad8c273a0737196f838728c62ebc6"
+  },
+  "results": [
+    {
+      "case": "baseline",
+      "old_four_tests": {
+        "argv": [
+          "/opt/homebrew/opt/python@3.14/bin/python3.14",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "pipeline",
+          "-p",
+          "test_pipeline.py",
+          "-v"
+        ],
+        "cwd": "/Users/andyzhou/dev/.audit-evidence/2026-10-28/chartspur/cli-controls/baseline",
+        "exit_code": 0,
+        "seconds": 0.042,
+        "log": "cli-controls/baseline/old-tests.log",
+        "log_sha256": "99218003ef382ebe521141de056e83517682ac4272895e0b1c634bd6322eb630"
+      },
+      "old_four_tests_pass": true,
+      "CLI": {
+        "argv": [
+          "/opt/homebrew/opt/python@3.14/bin/python3.14",
+          "pipeline/estimate.py"
+        ],
+        "cwd": "/Users/andyzhou/dev/.audit-evidence/2026-10-28/chartspur/cli-controls/baseline",
+        "exit_code": 0,
+        "seconds": 0.022,
+        "log": "cli-controls/baseline/estimate.log",
+        "log_sha256": "3f1e39454d2f8ad4a3a1ecf587405f575a4572508aee4ca5f6e6ecfe9772b523"
+      },
+      "observation": {
+        "keeper_passes": true,
+        "checks": {
+          "forty_exported_apps": true,
+          "valid_screenshot_preserved": true,
+          "malformed_screenshot_falls_back": true,
+          "missing_screenshot_falls_back": true,
+          "first_snapshot_velocity_is_null": true,
+          "prior_snapshot_velocity_is_five": true
+        },
+        "selected_output": {
+          "1": {
+            "screenshots": [
+              "https://example.invalid/first.png"
+            ],
+            "rc_velocity": 5.0
+          },
+          "2": {
+            "screenshots": [],
+            "rc_velocity": null
+          },
+          "3": {
+            "screenshots": [],
+            "rc_velocity": null
+          }
+        }
+      }
+    },
+    {
+      "case": "screenshots-discarded",
+      "old_four_tests": {
+        "argv": [
+          "/opt/homebrew/opt/python@3.14/bin/python3.14",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "pipeline",
+          "-p",
+          "test_pipeline.py",
+          "-v"
+        ],
+        "cwd": "/Users/andyzhou/dev/.audit-evidence/2026-10-28/chartspur/cli-controls/screenshots-discarded",
+        "exit_code": 0,
+        "seconds": 0.036,
+        "log": "cli-controls/screenshots-discarded/old-tests.log",
+        "log_sha256": "99218003ef382ebe521141de056e83517682ac4272895e0b1c634bd6322eb630"
+      },
+      "old_four_tests_pass": true,
+      "CLI": {
+        "argv": [
+          "/opt/homebrew/opt/python@3.14/bin/python3.14",
+          "pipeline/estimate.py"
+        ],
+        "cwd": "/Users/andyzhou/dev/.audit-evidence/2026-10-28/chartspur/cli-controls/screenshots-discarded",
+        "exit_code": 0,
+        "seconds": 0.022,
+        "log": "cli-controls/screenshots-discarded/estimate.log",
+        "log_sha256": "3f1e39454d2f8ad4a3a1ecf587405f575a4572508aee4ca5f6e6ecfe9772b523"
+      },
+      "observation": {
+        "keeper_passes": false,
+        "checks": {
+          "forty_exported_apps": true,
+          "valid_screenshot_preserved": false,
+          "malformed_screenshot_falls_back": true,
+          "missing_screenshot_falls_back": true,
+          "first_snapshot_velocity_is_null": true,
+          "prior_snapshot_velocity_is_five": true
+        },
+        "selected_output": {
+          "1": {
+            "screenshots": [],
+            "rc_velocity": 5.0
+          },
+          "2": {
+            "screenshots": [],
+            "rc_velocity": null
+          },
+          "3": {
+            "screenshots": [],
+            "rc_velocity": null
+          }
+        }
+      }
+    },
+    {
+      "case": "malformed-screenshots-raise",
+      "old_four_tests": {
+        "argv": [
+          "/opt/homebrew/opt/python@3.14/bin/python3.14",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "pipeline",
+          "-p",
+          "test_pipeline.py",
+          "-v"
+        ],
+        "cwd": "/Users/andyzhou/dev/.audit-evidence/2026-10-28/chartspur/cli-controls/malformed-screenshots-raise",
+        "exit_code": 0,
+        "seconds": 0.037,
+        "log": "cli-controls/malformed-screenshots-raise/old-tests.log",
+        "log_sha256": "99218003ef382ebe521141de056e83517682ac4272895e0b1c634bd6322eb630"
+      },
+      "old_four_tests_pass": true,
+      "CLI": {
+        "argv": [
+          "/opt/homebrew/opt/python@3.14/bin/python3.14",
+          "pipeline/estimate.py"
+        ],
+        "cwd": "/Users/andyzhou/dev/.audit-evidence/2026-10-28/chartspur/cli-controls/malformed-screenshots-raise",
+        "exit_code": 1,
+        "seconds": 0.03,
+        "log": "cli-controls/malformed-screenshots-raise/estimate.log",
+        "log_sha256": "bd7e776911e76a8fa5bca71c4c0f3214feb912951eb0be0cc6b5aad48d0bbcc7"
+      },
+      "observation": {
+        "keeper_passes": false,
+        "reason": "estimate CLI failed",
+        "JSONDecodeError": true
+      }
+    },
+    {
+      "case": "first-snapshot-zero-velocity",
+      "old_four_tests": {
+        "argv": [
+          "/opt/homebrew/opt/python@3.14/bin/python3.14",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "pipeline",
+          "-p",
+          "test_pipeline.py",
+          "-v"
+        ],
+        "cwd": "/Users/andyzhou/dev/.audit-evidence/2026-10-28/chartspur/cli-controls/first-snapshot-zero-velocity",
+        "exit_code": 0,
+        "seconds": 0.037,
+        "log": "cli-controls/first-snapshot-zero-velocity/old-tests.log",
+        "log_sha256": "99218003ef382ebe521141de056e83517682ac4272895e0b1c634bd6322eb630"
+      },
+      "old_four_tests_pass": true,
+      "CLI": {
+        "argv": [
+          "/opt/homebrew/opt/python@3.14/bin/python3.14",
+          "pipeline/estimate.py"
+        ],
+        "cwd": "/Users/andyzhou/dev/.audit-evidence/2026-10-28/chartspur/cli-controls/first-snapshot-zero-velocity",
+        "exit_code": 0,
+        "seconds": 0.02,
+        "log": "cli-controls/first-snapshot-zero-velocity/estimate.log",
+        "log_sha256": "3f1e39454d2f8ad4a3a1ecf587405f575a4572508aee4ca5f6e6ecfe9772b523"
+      },
+      "observation": {
+        "keeper_passes": false,
+        "checks": {
+          "forty_exported_apps": true,
+          "valid_screenshot_preserved": true,
+          "malformed_screenshot_falls_back": true,
+          "missing_screenshot_falls_back": true,
+          "first_snapshot_velocity_is_null": false,
+          "prior_snapshot_velocity_is_five": true
+        },
+        "selected_output": {
+          "1": {
+            "screenshots": [
+              "https://example.invalid/first.png"
+            ],
+            "rc_velocity": 5.0
+          },
+          "2": {
+            "screenshots": [],
+            "rc_velocity": 0
+          },
+          "3": {
+            "screenshots": [],
+            "rc_velocity": 0
+          }
+        }
+      }
+    },
+    {
+      "case": "summary-baseline",
+      "nested_output": {
+        "argv": [
+          "/opt/homebrew/opt/python@3.14/bin/python3.14",
+          "pipeline/summary.py",
+          "--brief",
+          "brief.json",
+          "--ledger",
+          "ledger.json",
+          "--out",
+          "nested/summary.json"
+        ],
+        "cwd": "/Users/andyzhou/dev/.audit-evidence/2026-10-28/chartspur/cli-controls/summary-baseline",
+        "exit_code": 0,
+        "seconds": 0.033,
+        "log": "cli-controls/summary-baseline/nested-output.log",
+        "log_sha256": "dec11a737160196acf7faa7dc0d3896c0490962e39f5e7ebfd9b2747276e706c"
+      },
+      "relative_output": {
+        "argv": [
+          "/opt/homebrew/opt/python@3.14/bin/python3.14",
+          "pipeline/summary.py",
+          "--brief",
+          "brief.json",
+          "--ledger",
+          "ledger.json",
+          "--out",
+          "summary.json"
+        ],
+        "cwd": "/Users/andyzhou/dev/.audit-evidence/2026-10-28/chartspur/cli-controls/summary-baseline",
+        "exit_code": 1,
+        "seconds": 0.035,
+        "log": "cli-controls/summary-baseline/relative-output.log",
+        "log_sha256": "66116b1710d3f6ea12f7d9f9f3fa47c6a60b74c158c2320177a213e07f8b30eb"
+      },
+      "failure_is_empty_directory_makedirs": true,
+      "relative_file_written": false
+    },
+    {
+      "case": "summary-owner-repair",
+      "nested_output": {
+        "argv": [
+          "/opt/homebrew/opt/python@3.14/bin/python3.14",
+          "pipeline/summary.py",
+          "--brief",
+          "brief.json",
+          "--ledger",
+          "ledger.json",
+          "--out",
+          "nested/summary.json"
+        ],
+        "cwd": "/Users/andyzhou/dev/.audit-evidence/2026-10-28/chartspur/cli-controls/summary-owner-repair",
+        "exit_code": 0,
+        "seconds": 0.035,
+        "log": "cli-controls/summary-owner-repair/nested-output.log",
+        "log_sha256": "dec11a737160196acf7faa7dc0d3896c0490962e39f5e7ebfd9b2747276e706c"
+      },
+      "relative_output": {
+        "argv": [
+          "/opt/homebrew/opt/python@3.14/bin/python3.14",
+          "pipeline/summary.py",
+          "--brief",
+          "brief.json",
+          "--ledger",
+          "ledger.json",
+          "--out",
+          "summary.json"
+        ],
+        "cwd": "/Users/andyzhou/dev/.audit-evidence/2026-10-28/chartspur/cli-controls/summary-owner-repair",
+        "exit_code": 0,
+        "seconds": 0.035,
+        "log": "cli-controls/summary-owner-repair/relative-output.log",
+        "log_sha256": "336575738b2784de5ae79067e2537cfe0b95211e6e4a6d126ab0a07442e9f01e"
+      },
+      "failure_is_empty_directory_makedirs": false,
+      "relative_file_written": true,
+      "persisted_checks": {
+        "genre": true,
+        "apps": true,
+        "zero_cash": true,
+        "closed_checkout": true,
+        "same_as_nested": true
+      }
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "base": "49453b586d9a854c942ea02a4b77c9b85e7ab382",
+  "approved_v2_patch_sha256": "85ccc6ddb7f8149bff3e48b834bfdfe2c3d41714f318175f101fe2c8b9a6336a",
+  "apply_method": "Exact source-byte copy after canonical baseline and patch hash checks. The frozen unified diff omitted Git new-file metadata; git apply --check failed before any write.",
+  "git_apply_check_exit_code": 1,
+  "git_apply_check_error": "error: dev/null: No such file or directory",
+  "scope": [
+    "pipeline/estimate.py",
+    "pipeline/summary.py",
+    "pipeline/test_pipeline.py",
+    "pipeline/test_cli.py"
+  ],
+  "all_four_files_match_reviewed_v2": true,
+  "applied_file_hashes": {
+    "pipeline/estimate.py": "33472c7f03528ba18a01b730bcb64afcefa461dda9ebe59db01338446d07ef2e",
+    "pipeline/summary.py": "7898fa7b1c611ca4a5a6eb19bd03a490b0e5d4b30a30abd749852a818b7599cb",
+    "pipeline/test_pipeline.py": "ee2da71e4cf3bfd97973ac376e9fb27776740d57a0abf1d29c13670742841e8c",
+    "pipeline/test_cli.py": "a8960e6b2405f73340d08a888b1f96be9a08d2b12de629e75bab90765c91ae18"
+  },
+  "retired_methods": [
+    "T.test_shots_parse",
+    "T.test_velocity_none_without_prev"
+  ],
+  "all_retained_pipeline_method_bodies_exact": true,
+  "brief_and_summary_test_files_exact_to_base": true,
+  "python_lane_old_case_count": 18,
+  "python_lane_new_case_count": 18,
+  "stored_data_files_pinned": 12,
+  "stored_data_changes": [],
+  "shared_test_runner_started": false,
+  "source_edits_ended": true,
+  "commit_created": false,
+  "push_performed": false,
+  "status_at_receipt": " M .github/ISSUE_TEMPLATE/genre-brief.yml\n M AGENTS.md\n M pipeline/estimate.py\n M pipeline/summary.py\n M pipeline/test_pipeline.py\n?? pipeline/test_cli.py\n"
+}

@@ -1,5 +1,5 @@
 """Stdlib checks for estimate helpers. No network."""
-import json, sys, os, unittest
+import sys, os, unittest
 sys.path.insert(0, os.path.dirname(__file__))
 from estimate import dl_day, keywords
 
@@ -12,14 +12,6 @@ class T(unittest.TestCase):
         self.assertIn("productivity app", k)
         self.assertLessEqual(len(k), 8)
         self.assertEqual(len(k), len(set(k)))
-    def test_shots_parse(self):
-        self.assertEqual(json.loads('["https://a"]'), ["https://a"])
-        try: json.loads("not-json"); self.fail("expected error")
-        except json.JSONDecodeError: pass
-    def test_velocity_none_without_prev(self):
-        prev, rc, ts = None, 10, 100
-        vel = round((rc - prev[0]) / max(1, (ts - prev[1]) / 86400), 1) if prev and rc is not None and prev[0] is not None and ts > prev[1] else None
-        self.assertIsNone(vel)
 
 if __name__ == "__main__":
     unittest.main()

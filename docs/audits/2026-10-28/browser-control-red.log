@@ -1,0 +1,6 @@
+Metadata fixture: https://itunes.apple.com/search?term=Chartspur%20metadata%20audit&entity=software&limit=12
+Traceback (most recent call last):
+  File "/Users/andyzhou/dev/.audit-evidence/2026-10-28/chartspur/genre-proof/v2/proposed-verify_ui.py", line 73, in <module>
+    assert result.get_by_role("cell", name=fixture["primaryGenreName"], exact=True).count() == 1, "search genre missing"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: search genre missing

@@ -1,0 +1,27 @@
+{
+  "approved_epoch_patch_sha256": "44807a0ab6ef2502c02a5bf87fc8897b16c921f49c9e8f749fcbda82eafa2136",
+  "applied_source_hashes": {
+    "pipeline/summary.py": "dcca342caba2794a8bfd7bcd2da9be57f19c8028b77402edcef85fe62dc3234d",
+    "pipeline/test_cli.py": "4daa6d8d07f20616ac21061d29fca02ce2c39e15c294bea800625cacd4bade28"
+  },
+  "exact_proposal_source_bytes": true,
+  "changed_pipeline_paths": [
+    "pipeline/summary.py",
+    "pipeline/test_cli.py"
+  ],
+  "all_other_pipeline_sources_unchanged": true,
+  "existing_test_methods_preserved": true,
+  "all_existing_assertion_ASTs_exact": true,
+  "estimate_case_AST_exact": true,
+  "whole_pipeline_copy_setup_preserved": true,
+  "new_test_methods": [
+    "test_summary_decision_honors_epoch_zero"
+  ],
+  "total_CLI_cases": 3,
+  "stored_data_files_pinned": 12,
+  "stored_data_changes": [],
+  "shared_runner_started": false,
+  "source_edits_ended": true,
+  "commit_created": false,
+  "push_performed": false
+}

@@ -1,0 +1,73 @@
+{
+  "base": "49453b586d9a854c942ea02a4b77c9b85e7ab382",
+  "patch_sha256": "e56d2d9c3412f1eca9985df717d714fc581654674633e6e8823456124554cf24",
+  "original_assertions": 12,
+  "candidate_assertions": 19,
+  "all_old_assertions_preserved": true,
+  "all_old_lines_in_order": true,
+  "controls": {
+    "search-old": {
+      "exactly_one_expected_field_reverted": true,
+      "all_other_files_identical_to_fixed": true,
+      "app_sha256": "cc48e550437adf6f46d3e39dd812f232e95d2e87dfb1281e9932fa4420bd2888"
+    },
+    "lookup-old": {
+      "exactly_one_expected_field_reverted": true,
+      "all_other_files_identical_to_fixed": true,
+      "app_sha256": "90a67f5c07affd922aadcff24ba02c9217dfdcd22935ea7fb46cca2469a6c606"
+    }
+  },
+  "results": [
+    {
+      "name": "red",
+      "argv": [
+        "python3",
+        "/Users/andyzhou/dev/.audit-evidence/2026-10-28/chartspur/genre-proof/v2/proposed-verify_ui.py",
+        "8913"
+      ],
+      "cwd": "/Users/andyzhou/dev/.audit-evidence/2026-10-28/chartspur/genre-proof/v2/outputs/red",
+      "exit_code": 1
+    },
+    {
+      "name": "search-old",
+      "argv": [
+        "python3",
+        "/Users/andyzhou/dev/.audit-evidence/2026-10-28/chartspur/genre-proof/v2/proposed-verify_ui.py",
+        "8917"
+      ],
+      "cwd": "/Users/andyzhou/dev/.audit-evidence/2026-10-28/chartspur/genre-proof/v2/outputs/search-old",
+      "exit_code": 1
+    },
+    {
+      "name": "lookup-old",
+      "argv": [
+        "python3",
+        "/Users/andyzhou/dev/.audit-evidence/2026-10-28/chartspur/genre-proof/v2/proposed-verify_ui.py",
+        "8918"
+      ],
+      "cwd": "/Users/andyzhou/dev/.audit-evidence/2026-10-28/chartspur/genre-proof/v2/outputs/lookup-old",
+      "exit_code": 1
+    },
+    {
+      "name": "fixed",
+      "argv": [
+        "python3",
+        "/Users/andyzhou/dev/.audit-evidence/2026-10-28/chartspur/genre-proof/v2/proposed-verify_ui.py",
+        "8916"
+      ],
+      "cwd": "/Users/andyzhou/dev/.audit-evidence/2026-10-28/chartspur/genre-proof/v2/outputs/fixed",
+      "exit_code": 0
+    }
+  ],
+  "files": {
+    "index.html": "d08d4c9aae1268d6f47c36476f5fcc1ea830bfc5d724ffe815b17b09896d0b44",
+    "styles.css": "3d63863684fa0c743c995b923a6e724fda6a10ddf27c4e651afe383ccb118494",
+    "data.js": "b7b9ba511508f514840229ff6971accc86f295d0fa7a63902ecb93d866173bd9",
+    "brief.html": "5997c1d903234eb7e345f1c6a0b327efd3ca8a120a8fb4dae712e91ad3f41fd3",
+    "app.js": "36483424a79dbcd636afc15451e2d8bbad0a936b654a7ebffc96130644839c38",
+    "seed.json": "769bc1118d03a8ceccf72de9b6bbed383cbaec5afcb0522252db97c179c49206",
+    "pipeline/verify_ui.py": "f02be4550befa83adb01c826b166be14ef8209c07f365c45b2d0c06a1dd6dff5",
+    "data/brief.json": "84e9ed10b4e993a0151743cea03c4ea335c0f1a8b879f5c164430ec79a7a84a7",
+    "data/live.json": "a1b2a33cafdc7bed22c5781b074a381e1e320278e9993a9384f63153eb807eb8"
+  }
+}
