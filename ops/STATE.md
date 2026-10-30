@@ -1,6 +1,6 @@
 # Chartspur operating state
 
-Updated 2026-10-15: card checkout is open and experiment 001 is running. Updated 2026-10-14: the repository is now `myrmitis/chartspur` (renamed from `myrmitis/appsignal`) and the site is at https://chartspur.com/. Earlier sections date from 2026-09-26. This file is the handoff. Chat history is not required to continue.
+Updated 2026-10-30: experiment 001's 14-day window ended with no recorded paid order (see Experiment below). Updated 2026-10-15: card checkout is open and experiment 001 is running. Updated 2026-10-14: the repository is now `myrmitis/chartspur` (renamed from `myrmitis/appsignal`) and the site is at https://chartspur.com/. Earlier sections date from 2026-09-26. This file is the handoff. Chat history is not required to continue.
 
 ## Offer
 
@@ -12,7 +12,9 @@ The largest genre is published free at `brief.html`. The existing chart table on
 
 Checkout is **open** since 2026-10-15 (commit 57fd7eb). `ops/payments.json` holds the live Stripe Payment Link. `brief.html` shows the Pay $19 button.
 
-Experiment: `ops/experiments/001-category-brief.json` is **running**. The 14-day window starts 2026-10-15 and the result is due 2026-10-29.
+Experiment: `ops/experiments/001-category-brief.json` **ended** on 2026-10-29. The day-14 result (recorded 2026-10-30): no paid
+order is recorded, so success is not shown. The zero is not reconciled with Stripe, because agents cannot read it (#12).
+The experiment's stop-or-pivot rule applies: the owner chooses a new offer, audience or price in #13.
 
 ## Profit
 

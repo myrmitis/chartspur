@@ -1,6 +1,6 @@
 {
   "id": "001-category-brief",
-  "status": "running",
+  "status": "ended",
   "started_on": "2026-10-15",
   "started_by_commit": "57fd7eb",
   "recorded_at": "2026-09-26",
@@ -18,6 +18,16 @@
   "why_this_offer": "Appfigures lists competitor intelligence well above $19, with public plan prices from $9.99/month for a limited Connect plan up to $149.99/month and higher for broader intelligence. The Chartspur chart table already gives away current single-chart rows. Rank movement across the three US top charts is computed from stored snapshots and is not on that table. Fulfillment is a local script with no new vendor spend.",
   "notes": [
     "2026-10-15: live card checkout opened in commit 57fd7eb (Stripe Payment Link in ops/payments.json). The 14-day window starts on this UTC day.",
-    "2026-10-15: the site moved from https://myrmitis.github.io/appsignal/ to https://chartspur.com/ after the repository rename. The success metric did not change."
-  ]
+    "2026-10-15: the site moved from https://myrmitis.github.io/appsignal/ to https://chartspur.com/ after the repository rename. The success metric did not change.",
+    "2026-10-30: day-14 result recorded (window ended 2026-10-29). No paid order is recorded; the zero is not reconciled with Stripe because agents cannot read it (#12). Pivot decision: #13."
+  ],
+  "result": {
+    "recorded_on": "2026-10-30",
+    "window": "2026-10-15 to 2026-10-29 (14 days, checkout open throughout)",
+    "paid_orders_recorded": 0,
+    "reconciled_with_processor": false,
+    "evidence": "ops/ledger.json lists no orders and cash_collected_usd 0; ops/summary.json shows paying_customers 0. Agents cannot read Stripe orders: the read-only key in myrmitis/chartspur#12 does not exist yet.",
+    "verdict": "Success not shown. The success metric needs one paid order reconciled from the processor, and no order is recorded. The stop_or_pivot rule applies unless the owner's Stripe dashboard shows a paid order from someone other than the owner.",
+    "next": "Owner decision in myrmitis/chartspur#13: change the offer, the audience or the price. Do not add features to avoid a zero, and do not paywall the free chart table."
+  }
 }
