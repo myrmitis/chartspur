@@ -16,14 +16,18 @@ with sync_playwright() as p:
     status = page.locator("#status").inner_text()
     assert rows >= 100, f"expected pipeline rows, got {rows}"
     assert "Live pipeline data" in status, status
-    page.locator("tr[data-id]").first.click()
+    page.locator("tr[data-id] .app-link").first.focus()
+    page.keyboard.press("Enter")
     page.wait_for_selector("#detail h2")
+    assert page.locator("#detail h2").evaluate("e => e === document.activeElement"), "detail must receive keyboard focus"
     detail = page.locator("#detail").inner_text()
     assert "Pipeline estimate" in detail, detail
     page.locator(".tabs button[data-t=onb]").click()
     tab = page.locator("#tab").inner_text()
     assert "App Store screenshots" in tab or "No screenshots" in tab, tab
     page.locator(".tabs button[data-t=ads]").click()
+    assert page.locator(".tabs button[data-t=ads]").get_attribute("aria-pressed") == "true"
+    assert page.locator(".tabs button[data-t=onb]").get_attribute("aria-pressed") == "false"
     ads = page.locator("#tab").inner_text()
     assert "Meta Ad Library" in ads, ads
     assert "demo" not in ads.lower() or "token required" in ads.lower()
@@ -67,9 +71,17 @@ with sync_playwright() as p:
     metadata.on("pageerror", lambda e: errors.append(str(e)))
     metadata.goto(f"http://127.0.0.1:{port}/", wait_until="networkidle")
     metadata.locator("#q").fill("Chartspur metadata audit")
-    metadata.locator("#go").click()
+    status_before_composition = metadata.locator("#status").inner_text()
+    # IME confirmation must not invoke live search. Native form submission
+    # handles composition; there is no custom Enter keydown handler.
+    metadata.locator("#q").dispatch_event("keydown", {"key": "Enter", "code": "Enter", "isComposing": True})
+    metadata.locator("#q").dispatch_event("keydown", {"key": "Enter", "code": "Enter", "keyCode": 229})
+    assert metadata.locator("#status").inner_text() == status_before_composition, "IME confirmation changed search state"
+    assert metadata_requests == [], "IME confirmation triggered search"
+    metadata.locator("#q").press("Enter")
     result = metadata.locator('tr[data-id="900000001"]')
     result.wait_for()
+    assert metadata_requests == ["/search"], "form submission must start one search"
     assert result.get_by_role("cell", name=fixture["primaryGenreName"], exact=True).count() == 1, "search genre missing"
     metadata.locator("#genre").select_option(label=fixture["primaryGenreName"])
     assert result.count() == 1, "genre filter must retain the matching search result"
@@ -82,6 +94,12 @@ with sync_playwright() as p:
     assert metadata.locator("#detail").get_by_text(genre_line, exact=False).count() == 1, "lookup genre missing"
     assert set(metadata_requests) == {"/search", "/lookup"}, metadata_requests
     assert not errors, errors
+    metadata.set_viewport_size({"width": 320, "height": 700})
+    metadata.add_style_tag(content="html { font-size: 200%; }")
+    assert metadata.locator("#q").evaluate("e => parseFloat(getComputedStyle(e).fontSize)") >= 32
+    assert metadata.evaluate("document.documentElement.scrollWidth <= innerWidth"), "page overflows at 320px with enlarged text"
+    metadata.locator("#tablewrap").focus()
+    assert metadata.locator("#tablewrap").evaluate("e => e === document.activeElement"), "results scroll region must be keyboard reachable"
     metadata_context.close()
     browser.close()
 print(f"UI OK: {rows} rows, detail renders, no console errors")
