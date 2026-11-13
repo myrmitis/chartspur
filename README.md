@@ -64,3 +64,25 @@ python3 pipeline/verify_ui.py 8903
 The browser check writes `data/verify.png`. Hosted CI runs the offline and syntax checks; run Playwright locally as well.
 Use a disposable copy for pipeline verification so the committed snapshot stays intact.
 See [the test audit](docs/audits/2026-10-28/README.md) for retirement proof and actual checks.
+
+### Frontend maintenance — 2026-11-13
+
+The draft pass follows [Modern Web Guidance v1.0.0](https://github.com/GoogleChrome/modern-web-guidance/tree/4dd968349e54ca45a05dd5c818fb035c9054b022)
+from [main revision 62ef0ae8c5d9b4b88ed62c15c66a6106aeb61935](https://github.com/myrmitis/chartspur/commit/62ef0ae8c5d9b4b88ed62c15c66a6106aeb61935).
+Search now uses native form submission, so composition-confirmation keys
+are not intercepted. Each result has a native keyboard button; opening it
+focuses the detail heading, and detail choices expose their pressed state.
+The results table's scroll region is keyboard focusable.
+Controls inherit the reader's text size and the loading spinner stays still
+under reduced motion. Data, estimates, brief copy and payment state are unchanged.
+
+Verification: 37 existing pipeline tests and JavaScript/Python syntax checks
+pass; the pinned legacy scan has zero findings. A fixture-driven DOM check
+passes search submission, composition-event handling, result selection,
+detail focus and pressed-state updates. `pipeline/verify_ui.py` adds browser
+checks for those interactions and 320px reflow with enlarged text. Its actual
+browser run remains blocked by Chromium startup in the validation environment;
+DOM checks do not establish rendering or real IME acceptance. Run that browser
+gate before merging. This source change has not been deployed.
+
+Review: [frontend comparison](https://github.com/myrmitis/chartspur/compare/main...codex/modern-web-guidance-20261113).
