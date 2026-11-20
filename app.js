@@ -34,7 +34,7 @@ function render(deal) {
     const rk = a.rank ? `<span class="rank">#${a.rank}</span> ` : "";
     const vel = a.rc_velocity > 0 ? " ▲" : "";
     return `<tr data-id="${a.trackId}"${state.cur && state.cur.trackId === a.trackId ? ' class="sel"' : ""}>` +
-      `<td>${rk}<b>${esc(a.trackName)}</b><br><span class="mut">${esc(a.sellerName)}</span></td>` +
+      `<td>${rk}<button type="button" class="app-link">${esc(a.trackName)}</button><br><span class="mut">${esc(a.sellerName)}</span></td>` +
       `<td>${esc(a.primaryGenreName)}</td><td>${money(e.rev)}/mo <span class="mut">${estTag(a)}</span></td>` +
       `<td>${fmt(e.dl)}/mo${vel}</td>` +
       `<td>${a.averageUserRating ? "★ " + a.averageUserRating.toFixed(1) : "—"}</td></tr>`;
@@ -91,15 +91,18 @@ async function show(id) {
   const e = est(a), tag = estTag(a);
   const rankLine = a.rank ? ` · #${a.rank} ${esc(a.chart || "")}` : "";
   const velLine = a.rc_velocity > 0 ? ` · ▲${a.rc_velocity}/day ratings` : "";
-  $("#detail").innerHTML = `<div class="card"><h2>${esc(a.trackName)}</h2>
+  $("#detail").innerHTML = `<div class="card"><h2 tabindex="-1">${esc(a.trackName)}</h2>
     <p class="mut">${esc(a.sellerName)} · ${esc(a.primaryGenreName)} · ${a.price ? "$" + a.price : "Free"} · ★ ${(a.averageUserRating || 0).toFixed(1)} (${fmt(a.userRatingCount || 0)} ratings)${rankLine}${velLine}</p>
     <div class="warn">${a._est ? "Pipeline estimate (rank+velocity v1) — directional, not exact." : "Demo estimate — not real data. Formula: ratings × rating × price factor."}</div>
     <div class="grid"><div class="card"><b>Revenue (${tag})</b><br>${money(e.rev)}/mo</div><div class="card"><b>Downloads (${tag})</b><br>${fmt(e.dl)}/mo</div></div>
-    <div class="tabs">${["ads", "viral", "kw", "onb"].map(t => `<button data-t="${t}"${t === state.tab ? ' class="on"' : ""}>${{ ads: "Ads", viral: "Viral", kw: "Keywords", onb: "Onboarding" }[t]}</button>`).join("")}</div>
+    <div class="tabs">${["ads", "viral", "kw", "onb"].map(t => `<button type="button" data-t="${t}" aria-pressed="${t === state.tab}"${t === state.tab ? ' class="on"' : ""}>${{ ads: "Ads", viral: "Viral", kw: "Keywords", onb: "Onboarding" }[t]}</button>`).join("")}</div>
     <div id="tab"></div></div>`;
   document.querySelectorAll(".tabs button").forEach(b => b.onclick = () => {
     state.tab = b.dataset.t;
-    document.querySelectorAll(".tabs button").forEach(x => x.classList.toggle("on", x === b));
+    document.querySelectorAll(".tabs button").forEach(x => {
+      x.classList.toggle("on", x === b);
+      x.setAttribute("aria-pressed", String(x === b));
+    });
     renderTab();
   });
   renderTab();
@@ -107,6 +110,7 @@ async function show(id) {
   const p = new URLSearchParams(location.search);
   p.set("id", String(id));
   history.replaceState(null, "", "?" + p.toString());
+  $("#detail h2").focus({ preventScroll: true });
   const calm = matchMedia("(prefers-reduced-motion: reduce)").matches;
   $("#detail").scrollIntoView({ behavior: calm ? "auto" : "smooth" });
 }
@@ -155,8 +159,10 @@ async function load() {
   if (id) show(+id);
 }
 
-$("#go").onclick = () => doSearch();
-$("#q").addEventListener("keydown", e => { if (e.key === "Enter") doSearch(); });
+$("#search-form").addEventListener("submit", e => {
+  e.preventDefault();
+  doSearch();
+});
 $("#genre").onchange = () => render(true);
 $("#sort").onchange = () => render(true);
 load();
